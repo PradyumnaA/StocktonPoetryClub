@@ -1,9 +1,8 @@
-// index.js
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import userRoutes from './routes/user.route.js';
-
+import userRoute from "./routes/user.route.js";
+import authRoute from "./routes/auth.route.js";
 dotenv.config();
 
 // Connect to MongoDB
@@ -23,9 +22,11 @@ const app = express();
 // Middleware to handle JSON bodies
 app.use(express.json());
 
-// Use 'userRouter' for all routes under '/api/user'
-app.use('/api/user', userRoutes);
+// Routes
+app.use('/api/user', userRoute);
+app.use('/api/auth', authRoute);
 
+// Start server
 app.listen(3000, () => {
     console.log("Server started on port 3000");
 });
